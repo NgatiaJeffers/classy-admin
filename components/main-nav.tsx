@@ -16,14 +16,19 @@ export function MainNav({
     // Create objects to be used by routes
     const routes = [
         {
-            href: `/${params.storeid}`,
+            href: `/${params.storeId}`,
             label: 'Overview',
-            active: pathname === `/${params.storeid}`
+            active: pathname === `/${params.storeId}`
         },
         {
-            href: `/${params.storeid}/settings`,
+            href: `/${params.storeId}/billboards`,
+            label: 'Billboards',
+            active: pathname === `/${params.storeId}/billboards`
+        },
+        {
+            href: `/${params.storeId}/settings`,
             label: 'Settings',
-            active: pathname === `/${params.storeid}/settings`
+            active: pathname === `/${params.storeId}/settings`
         }
     ];
 
@@ -31,6 +36,7 @@ export function MainNav({
     return (
         <nav
             className={cn("flex items-center space-x-4 lg:space-x-6", className)}
+            {...props}
         >
             {routes.map((route) => {
                 const { href, label, active } = route;
