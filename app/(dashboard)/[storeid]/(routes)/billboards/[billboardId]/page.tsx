@@ -14,8 +14,9 @@ const BillBoardPage = async ({
         if (params?.billboardId === "new") {
             const id = generate12ByteId(12);
             return id;
+        } else {
+            return params?.billboardId;
         }
-        return params?.billboard;
     }
 
     const billboard = await prismadb.billboard.findUnique({

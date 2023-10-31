@@ -33,7 +33,7 @@ model Billboard {
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
 
-  // @@index([storeId])
+  @@index([storeId])
 }
 
 //   id            String    @id @default("40678c4a-73eb-11ee-b962-0242ac120002") @map("_id") @db.ObjectId

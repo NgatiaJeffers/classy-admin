@@ -23,6 +23,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { AlertModal } from "@/components/modals/alert-modal";
+import ImageUpload from "@/components/ui/image-upload";
 
 const formSchema = z.object({
     label: z.string().min(1),
@@ -61,9 +62,24 @@ export const  BillboardForm: React.FC<BillboardFormProps> = ({
     const onSubmit = async (data: BillboardFormValues) => {
         try {
             setLoading(true);
-            await axios.patch(`/api/stores/${params.storeId}`, data);
+            console.log(params.billboardId)
+            if (initialData) {
+                await axios.patch(`/api/${params.storeId}/billboards/${params.billboardId}`, data);
+                    //TODO[Handle response and errors correctly] 
+                    // .then((response) => {
+                    // console.log(response)
+                    // })
+                    // .catch((error) => console.log(error));
+            } else {
+                await axios.post(`/api/${params.storeId}/billboards`, data);
+                    //TODO[Handle response and errors correctly] 
+                    // .then((response) => {
+                    // console.log(response)
+                    // })
+                    // .catch((error) => console.log(error));
+            }
             router.refresh();
-            toast.success("Store updated!");
+            toast.success(toastMessage);
         } catch (error: any) {
             console.log(error)
             toast.error("Something went wrong!");
@@ -75,12 +91,12 @@ export const  BillboardForm: React.FC<BillboardFormProps> = ({
     const onDelete = async () => {
         try {
             setLoading(true);
-            await axios.delete(`/api/stores/${params.storeId}`);
+            await axios.delete(`/api/${params.storeId}/billboards/${params.billboardId}`);
             router.refresh();
             router.push("/");
             toast.success("Store deleted!")
         } catch (error: any) {
-            toast.error("Make sure you removed all products and categories first!");
+            toast.error("Make sure you removed all categories using this billboard first.");
         } finally {
             setLoading(false);
             setOpen(false);
@@ -100,7 +116,8 @@ export const  BillboardForm: React.FC<BillboardFormProps> = ({
                     title={title}
                     description={description}
                 />
-                <Button
+                {initialData && (
+                    <Button
                     disabled={loading}
                     variant="destructive"
                     size="icon"
@@ -108,10 +125,30 @@ export const  BillboardForm: React.FC<BillboardFormProps> = ({
                 >
                     <Trash className="h-4 w-4" />
                 </Button>
+                )}
+                
             </div>
             <Separator />
             <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 w-full">
+                    <FormField
+                        control={form.control}
+                        name="imageUrl"
+                        render={({ field }) => (
+                            <FormItem>
+                                <FormLabel>Background Image</FormLabel>
+                                <FormControl>
+                                    <ImageUpload 
+                                        value={field.value ? [field.value] : []}
+                                        disabled={loading}
+                                        onChange={(url) => field.onChange(url)}
+                                        onRemove={() => field.onChange('')}
+                                    />
+                                </FormControl>
+                                <FormMessage />
+                            </FormItem>
+                        )}
+                    />
                     <div className="grid grid-cols-3 gap-8">
                         <FormField
                             control={form.control}
