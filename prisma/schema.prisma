@@ -6,13 +6,16 @@ generator client {
 }
 
 datasource db {
-  provider = "mysql"
+  // If switching DATABASE's postgresql, mysql, mongodb "README.md" for more information
+  provider = "mongodb"
   url      = env("DATABASE_URL")
   relationMode = "prisma"
 }
 
 model Store {
-  id            String       @id @default(uuid())
+  // Switch id's for rational and non-relational dbs
+  // id            Int       @id @default(autoincrement())
+  id            String      @id @default(auto()) @map("_id") @db.ObjectId
   name          String
   userId        String
   billboards    Billboard[] @relation("StoreToBillboard")
@@ -21,15 +24,16 @@ model Store {
 }
 
 model Billboard {
-  id            String    @id @default(uuid())
-  storeId       String
+  // id            Int       @id @default(autoincrement())
+  id            String    @id @default(auto()) @map("_id") @db.ObjectId
+  storeId       String    @db.ObjectId
   store         Store     @relation("StoreToBillboard", fields: [storeId], references: [id])
   label         String
   imageUrl      String
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
 
-  @@index([storeId])
+  // @@index([storeId])
 }
 
 //   id            String    @id @default("40678c4a-73eb-11ee-b962-0242ac120002") @map("_id") @db.ObjectId
