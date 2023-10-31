@@ -13,8 +13,6 @@ export async function POST(
 
         const { label, imageUrl } = body;
 
-        console.log(params)
-
         if (!userId) {
             return new NextResponse("Unauthenticated", { status: 401 });
         }
