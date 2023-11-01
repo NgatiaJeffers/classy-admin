@@ -78,6 +78,7 @@ export const  BillboardForm: React.FC<BillboardFormProps> = ({
                     // .catch((error) => console.log(error));
             }
             router.refresh();
+            router.push(`/${params.storeId}/billboards`)
             toast.success(toastMessage);
         } catch (error: any) {
             toast.error("Something went wrong!");
@@ -91,7 +92,7 @@ export const  BillboardForm: React.FC<BillboardFormProps> = ({
             setLoading(true);
             await axios.delete(`/api/${params.storeId}/billboards/${params.billboardId}`);
             router.refresh();
-            router.push("/");
+            router.push(`/${params.storeId}/billboards`);
             toast.success("Store deleted!")
         } catch (error: any) {
             toast.error("Make sure you removed all categories using this billboard first.");
