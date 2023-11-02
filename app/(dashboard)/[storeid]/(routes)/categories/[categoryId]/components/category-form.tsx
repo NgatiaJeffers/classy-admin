@@ -23,7 +23,6 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { AlertModal } from "@/components/modals/alert-modal";
-import ImageUpload from "@/components/ui/image-upload";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 const formSchema = z.object({
@@ -66,14 +65,14 @@ export const  CategoryForm: React.FC<CategoryFormProps> = ({
         try {
             setLoading(true);
             if (initialData) {
-                await axios.patch(`/api/${params.storeId}/billboards/${params.billboardId}`, data);
+                await axios.patch(`/api/${params.storeId}/categories/${params.categoryId}`, data);
                     //TODO[Handle response and errors correctly] 
                     // .then((response) => {
                     // console.log(response)
                     // })
                     // .catch((error) => console.log(error));
             } else {
-                await axios.post(`/api/${params.storeId}/billboards`, data);
+                await axios.post(`/api/${params.storeId}/categories`, data);
                     //TODO[Handle response and errors correctly] 
                     // .then((response) => {
                     // console.log(response)
@@ -81,7 +80,7 @@ export const  CategoryForm: React.FC<CategoryFormProps> = ({
                     // .catch((error) => console.log(error));
             }
             router.refresh();
-            router.push(`/${params.storeId}/billboards`)
+            router.push(`/${params.storeId}/categories`)
             toast.success(toastMessage);
         } catch (error: any) {
             toast.error("Something went wrong!");
@@ -93,12 +92,12 @@ export const  CategoryForm: React.FC<CategoryFormProps> = ({
     const onDelete = async () => {
         try {
             setLoading(true);
-            await axios.delete(`/api/${params.storeId}/billboards/${params.billboardId}`);
+            await axios.delete(`/api/${params.storeId}/categories/${params.categoryId}`);
             router.refresh();
-            router.push(`/${params.storeId}/billboards`);
-            toast.success("Store deleted!")
+            router.push(`/${params.storeId}/categories`);
+            toast.success("Category deleted!")
         } catch (error: any) {
-            toast.error("Make sure you removed all categories using this billboard first.");
+            toast.error("Make sure you removed all categories using this category first.");
         } finally {
             setLoading(false);
             setOpen(false);

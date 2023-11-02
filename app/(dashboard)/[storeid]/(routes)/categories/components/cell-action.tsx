@@ -1,6 +1,10 @@
 "use client";
 
+import { useState } from "react";
+import axios from "axios";
 import { Copy, Edit, MoreHorizontal, Trash } from "lucide-react";
+import toast from "react-hot-toast";
+import { useParams, useRouter } from "next/navigation";
 
 import { 
     DropdownMenu, 
@@ -10,16 +14,12 @@ import {
     DropdownMenuTrigger
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
-
-import { BillboardColumn } from "./columns";
-import toast from "react-hot-toast";
-import { useParams, useRouter } from "next/navigation";
-import { useState } from "react";
-import axios from "axios";
 import { AlertModal } from "@/components/modals/alert-modal";
 
+import { CategoryColumn } from "./columns";
+
 interface CellActionProps {
-    data: BillboardColumn;
+    data: CategoryColumn;
 }
 
 export const CellAction: React.FC<CellActionProps> = ({ data, }) => {
@@ -31,11 +31,11 @@ export const CellAction: React.FC<CellActionProps> = ({ data, }) => {
     const onDelete = async () => {
         try {
             setLoading(true);
-            await axios.delete(`/api/${params.storeId}/billboards/${data.id}`);
-            toast.success("Billboard deleted!");
+            await axios.delete(`/api/${params.storeId}/categories/${data.id}`);
+            toast.success("Category deleted!");
             router.refresh();
         } catch (error) {
-            toast.error("Make sure you removed all categories using the billboard first.")
+            toast.error("Make sure you removed all products using the category first.")
         } finally{
             setOpen(false)
             setLoading(false);
@@ -44,7 +44,7 @@ export const CellAction: React.FC<CellActionProps> = ({ data, }) => {
 
     const onCopy = (id: string) => {
         navigator.clipboard.writeText(id);
-        toast.success("Billboard Id copied to clipboard.");
+        toast.success("Category Id copied to clipboard.");
     }
 
     return (
@@ -70,7 +70,7 @@ export const CellAction: React.FC<CellActionProps> = ({ data, }) => {
                         <Copy className="mr-2 h-4 w-4" /> Copdy Id
                     </DropdownMenuItem>
                     <DropdownMenuItem
-                        onClick={() => router.push(`/${params.storeId}/billboards/${data.id}`)}
+                        onClick={() => router.push(`/${params.storeId}/categories/${data.id}`)}
                     >
                         <Edit className="mr-2 h-4 w-4" /> Update
                     </DropdownMenuItem>
