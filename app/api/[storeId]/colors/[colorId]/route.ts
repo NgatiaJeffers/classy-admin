@@ -7,25 +7,25 @@ import prismadb from "@/lib/prismadb";
 // Router for GET method
 export async function GET(
     _req: Request,
-    { params }: { params: { sizeId: string } }
+    { params }: { params: { colorId: string } }
 ) {
     try {
 
         // Check if the storeId Exsists
-        if (!params.sizeId) {
-            return new NextResponse("Size ID is required", { status: 400 });
+        if (!params.colorId) {
+            return new NextResponse("Color ID is required", { status: 400 });
         }
 
         // Update store
-        const size = await prismadb.size.findUnique({
+        const color = await prismadb.color.findUnique({
             where: {
-                id: params.sizeId,
+                id: params.colorId,
             }
         });
 
-        return NextResponse.json(size)
+        return NextResponse.json(color)
     } catch (error) {
-        console.log('[SIZE_GET]', error);
+        console.log('[COLOR_GET]', error);
         return new NextResponse("Internal error", { status: 500 });
     }
 }
@@ -33,7 +33,7 @@ export async function GET(
 // Router method for PATCH
 export async function PATCH(
     req: Request,
-    { params }: { params: { storeId: string, sizeId: string } }
+    { params }: { params: { storeId: string, colorId: string } }
 ) {
     try {
         // Get user ID
@@ -48,18 +48,18 @@ export async function PATCH(
             return new NextResponse("Unauthenticated", { status: 403 });
         }
 
-        // Check if the label exist in size
+        // Check if the label exist in color
         if (!name) {
             return new NextResponse("Name is required", { status: 400 });
         }
 
         if (!value) {
-            return new NextResponse("IValue is required", { status: 400 });
+            return new NextResponse("Value is required", { status: 400 });
         }
 
         // Check if the storeId Exsists
-        if (!params.sizeId) {
-            return new NextResponse("Size ID is required", { status: 400 });
+        if (!params.colorId) {
+            return new NextResponse("Color ID is required", { status: 400 });
         }
 
         const storebyUserId = await prismadb.store.findFirst({
@@ -74,9 +74,9 @@ export async function PATCH(
         }
 
         // Update store
-        const size = await prismadb.size.updateMany({
+        const color = await prismadb.color.updateMany({
             where: {
-                id: params.sizeId,
+                id: params.colorId,
             },
             data: {
                 name,
@@ -84,9 +84,9 @@ export async function PATCH(
             }
         });
 
-        return NextResponse.json(size)
+        return NextResponse.json(color)
     } catch (error) {
-        console.log('SIZE_PATCH]', error);
+        console.log('COLOR_PATCH]', error);
         return new NextResponse("Internal error", { status: 500 });
     }
 }
@@ -94,7 +94,7 @@ export async function PATCH(
 // Router for DELETE method
 export async function DELETE(
     _req: Request,
-    { params }: { params: { storeId: string, sizeId: string } }
+    { params }: { params: { storeId: string, colorId: string } }
 ) {
     try {
         // Get user ID
@@ -106,7 +106,7 @@ export async function DELETE(
         }
 
         // Check if the storeId Exsists
-        if (!params.sizeId) {
+        if (!params.colorId) {
             return new NextResponse("Size ID is required", { status: 400 });
         }
 
@@ -122,15 +122,15 @@ export async function DELETE(
         }
 
         // Update store
-        const size = await prismadb.size.deleteMany({
+        const color = await prismadb.color.deleteMany({
             where: {
-                id: params.sizeId,
+                id: params.colorId,
             }
         });
 
-        return NextResponse.json(size)
+        return NextResponse.json(color)
     } catch (error) {
-        console.log('[SIZE_DELETE]', error);
+        console.log('[COLOR_DELETE]', error);
         return new NextResponse("Internal error", { status: 500 });
     }
 }
