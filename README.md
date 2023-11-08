@@ -1,34 +1,60 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Admin Dashboard
 
-## Getting Started
+## Table of contents
 
-First, run the development server:
+- Summary
+- Requirements
+- Installation
+- Usage
+    - Bounding Box Support
+- To Do
+- Credits
+- Current Maintainers
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Summary
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Admin dashboard is a store management web app to monitor, update and, add required products for stores or even stores, see [classy admin](https://classy-seven.vercel.app/).
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+For a user to access you have to logging in using [Clerk.com](https://clerk.com/)
 
-## Learn More
 
-To learn more about Next.js, take a look at the following resources:
+## Requirements
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+App core resources
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+- Clerk
+- RESTful Web Services
+- Serialization
+- Authentication
+- App Routing
 
-## Deploy on Vercel
+External projects
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- [classy shop - coming soon!]()
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+## Installation
+
+For installation on your local machine
+
+- Copy the projects HTTPs
+`git clone https://github.com/NgatiaJeffers/classy-admin.git`
+
+- Navigate into the project
+`cd classy-admin`
+
+- Open terminal for packages installation and write this command
+`npm i or nom install`
+
+- You are not there yet, you need very important keys on your `.env` file to run it, you thought you had it figured it out, not today, mate.
+
+
+## More Content On The Way Man
+
+
+
+## Current Maintainers
+
+- Jeff (thefrontendguy) - <https://gakuya.vercel.app/>
+
