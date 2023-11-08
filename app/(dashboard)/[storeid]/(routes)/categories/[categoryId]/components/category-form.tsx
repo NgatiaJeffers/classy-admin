@@ -65,14 +65,14 @@ export const  CategoryForm: React.FC<CategoryFormProps> = ({
         try {
             setLoading(true);
             if (initialData) {
-                await axios.patch(`/api/${params.storeId}/categories/${params.categoryId}`, data);
+                await axios.patch(`/api/${params?.storeId}/categories/${params?.categoryId}`, data);
                     //TODO[Handle response and errors correctly] 
                     // .then((response) => {
                     // console.log(response)
                     // })
                     // .catch((error) => console.log(error));
             } else {
-                await axios.post(`/api/${params.storeId}/categories`, data);
+                await axios.post(`/api/${params?.storeId}/categories`, data);
                     //TODO[Handle response and errors correctly] 
                     // .then((response) => {
                     // console.log(response)
@@ -80,7 +80,7 @@ export const  CategoryForm: React.FC<CategoryFormProps> = ({
                     // .catch((error) => console.log(error));
             }
             router.refresh();
-            router.push(`/${params.storeId}/categories`)
+            router.push(`/${params?.storeId}/categories`)
             toast.success(toastMessage);
         } catch (error: any) {
             toast.error("Something went wrong!");
@@ -92,9 +92,9 @@ export const  CategoryForm: React.FC<CategoryFormProps> = ({
     const onDelete = async () => {
         try {
             setLoading(true);
-            await axios.delete(`/api/${params.storeId}/categories/${params.categoryId}`);
+            await axios.delete(`/api/${params?.storeId}/categories/${params?.categoryId}`);
             router.refresh();
-            router.push(`/${params.storeId}/categories`);
+            router.push(`/${params?.storeId}/categories`);
             toast.success("Category deleted!")
         } catch (error: any) {
             toast.error("Make sure you removed all categories using this category first.");

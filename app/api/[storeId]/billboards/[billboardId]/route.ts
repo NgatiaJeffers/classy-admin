@@ -12,14 +12,14 @@ export async function GET(
     try {
 
         // Check if the storeId Exsists
-        if (!params.billboardId) {
+        if (!params?.billboardId) {
             return new NextResponse("Billboard ID is required", { status: 400 });
         }
 
         // Update store
         const billboard = await prismadb.billboard.findUnique({
             where: {
-                id: params.billboardId,
+                id: params?.billboardId,
             }
         });
 
@@ -58,13 +58,13 @@ export async function PATCH(
         }
 
         // Check if the storeId Exsists
-        if (!params.billboardId) {
+        if (!params?.billboardId) {
             return new NextResponse("Billboard ID is required", { status: 400 });
         }
 
         const storebyUserId = await prismadb.store.findFirst({
             where: {
-                id: params.storeId,
+                id: params?.storeId,
                 userId,
             }
         });
@@ -76,7 +76,7 @@ export async function PATCH(
         // Update store
         const billboard = await prismadb.billboard.updateMany({
             where: {
-                id: params.billboardId,
+                id: params?.billboardId,
             },
             data: {
                 label,
@@ -106,13 +106,13 @@ export async function DELETE(
         }
 
         // Check if the storeId Exsists
-        if (!params.billboardId) {
+        if (!params?.billboardId) {
             return new NextResponse("Billboard ID is required", { status: 400 });
         }
 
         const storebyUserId = await prismadb.store.findFirst({
             where: {
-                id: params.storeId,
+                id: params?.storeId,
                 userId,
             }
         });
@@ -124,7 +124,7 @@ export async function DELETE(
         // Update store
         const billboard = await prismadb.billboard.deleteMany({
             where: {
-                id: params.billboardId,
+                id: params?.billboardId,
             }
         });
 

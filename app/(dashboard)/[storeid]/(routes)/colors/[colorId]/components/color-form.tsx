@@ -62,14 +62,14 @@ export const  ColorForm: React.FC<ColorFormProps> = ({
         try {
             setLoading(true);
             if (initialData) {
-                await axios.patch(`/api/${params.storeId}/colors/${params.colorId}`, data);
+                await axios.patch(`/api/${params?.storeId}/colors/${params?.colorId}`, data);
                     //TODO[Handle response and errors correctly] 
                     // .then((response) => {
                     // console.log(response)
                     // })
                     // .catch((error) => console.log(error));
             } else {
-                await axios.post(`/api/${params.storeId}/colors`, data);
+                await axios.post(`/api/${params?.storeId}/colors`, data);
                     //TODO[Handle response and errors correctly] 
                     // .then((response) => {
                     // console.log(response)
@@ -77,7 +77,7 @@ export const  ColorForm: React.FC<ColorFormProps> = ({
                     // .catch((error) => console.log(error));
             }
             router.refresh();
-            router.push(`/${params.storeId}/colors`)
+            router.push(`/${params?.storeId}/colors`)
             toast.success(toastMessage);
         } catch (error: any) {
             toast.error("Something went wrong!");
@@ -89,9 +89,9 @@ export const  ColorForm: React.FC<ColorFormProps> = ({
     const onDelete = async () => {
         try {
             setLoading(true);
-            await axios.delete(`/api/${params.storeId}/colors/${params.sizeId}`);
+            await axios.delete(`/api/${params?.storeId}/colors/${params?.sizeId}`);
             router.refresh();
-            router.push(`/${params.storeId}/colors`);
+            router.push(`/${params?.storeId}/colors`);
             toast.success("Size deleted!")
         } catch (error: any) {
             toast.error("Make sure you removed all products using this color first.");

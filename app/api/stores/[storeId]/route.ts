@@ -28,14 +28,14 @@ export async function PATCH(
         }
 
         // Check if the storeId Exsists
-        if (!params.storeId) {
+        if (!params?.storeId) {
             return new NextResponse("Store ID is required", { status: 400 });
         }
 
         // Update store
         const store = await prismadb.store.updateMany({
             where: {
-                id: params.storeId,
+                id: params?.storeId,
                 userId,
             },
             data: {
@@ -65,14 +65,14 @@ export async function DELETE(
         }
 
         // Check if the storeId Exsists
-        if (!params.storeId) {
+        if (!params?.storeId) {
             return new NextResponse("Store ID is required", { status: 400 });
         }
 
         // Update store
         const store = await prismadb.store.deleteMany({
             where: {
-                id: params.storeId,
+                id: params?.storeId,
                 userId,
             }
         });

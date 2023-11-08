@@ -25,13 +25,13 @@ export async function POST(
             return new NextResponse("Image URL is required", { status: 400 });
         }
 
-        if (!params.storeId) {
+        if (!params?.storeId) {
             return new NextResponse("Store ID is required", { status: 400 });
         }
 
         const storebyUserId = await prismadb.store.findFirst({
             where: {
-                id: params.storeId,
+                id: params?.storeId,
                 userId,
             }
         });
@@ -44,7 +44,7 @@ export async function POST(
             data: {
                 label,
                 imageUrl,
-                storeId: params.storeId,
+                storeId: params?.storeId,
             }
         });
 
@@ -61,13 +61,13 @@ export async function GET(
     { params }: { params: { storeId: string } }
 ) {
     try {
-        if (!params.storeId) {
+        if (!params?.storeId) {
             return new NextResponse("Store ID is required", { status: 400 });
         }
 
         const billboards = await prismadb.billboard.findMany({
             where: {
-                storeId: params.storeId,
+                storeId: params?.storeId,
             }
         });
 

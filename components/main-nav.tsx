@@ -16,32 +16,32 @@ export function MainNav({
     // Create objects to be used by routes
     const routes = [
         {
-            href: `/${params.storeId}`,
+            href: `/${params?.storeId}`,
             label: 'Overview',
-            active: pathname === `/${params.storeId}`
+            active: pathname === `/${params?.storeId}`
         },
         {
-            href: `/${params.storeId}/billboards`,
+            href: `/${params?.storeId}/billboards`,
             label: 'Billboards',
             active: pathname === `/${params?.storeId}/billboards`
         },
         {
-            href: `/${params.storeId}/categories`,
+            href: `/${params?.storeId}/categories`,
             label: 'Categories',
             active: pathname === `/${params?.storeId}/categories`
         },
         {
-            href: `/${params.storeId}/colors`,
+            href: `/${params?.storeId}/colors`,
             label: 'Colors',
             active: pathname === `/${params?.storeId}/colors`
         },
         {
-            href: `/${params.storeId}/sizes`,
+            href: `/${params?.storeId}/sizes`,
             label: 'Sizes',
             active: pathname === `/${params?.storeId}/sizes`
         },
         {
-            href: `/${params.storeId}/settings`,
+            href: `/${params?.storeId}/settings`,
             label: 'Settings',
             active: pathname === `/${params?.storeId}/settings`
         }

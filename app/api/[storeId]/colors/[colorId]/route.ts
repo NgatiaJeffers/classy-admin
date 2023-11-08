@@ -12,14 +12,14 @@ export async function GET(
     try {
 
         // Check if the storeId Exsists
-        if (!params.colorId) {
+        if (!params?.colorId) {
             return new NextResponse("Color ID is required", { status: 400 });
         }
 
         // Update store
         const color = await prismadb.color.findUnique({
             where: {
-                id: params.colorId,
+                id: params?.colorId,
             }
         });
 
@@ -58,13 +58,13 @@ export async function PATCH(
         }
 
         // Check if the storeId Exsists
-        if (!params.colorId) {
+        if (!params?.colorId) {
             return new NextResponse("Color ID is required", { status: 400 });
         }
 
         const storebyUserId = await prismadb.store.findFirst({
             where: {
-                id: params.storeId,
+                id: params?.storeId,
                 userId,
             }
         });
@@ -76,7 +76,7 @@ export async function PATCH(
         // Update store
         const color = await prismadb.color.updateMany({
             where: {
-                id: params.colorId,
+                id: params?.colorId,
             },
             data: {
                 name,
@@ -106,13 +106,13 @@ export async function DELETE(
         }
 
         // Check if the storeId Exsists
-        if (!params.colorId) {
+        if (!params?.colorId) {
             return new NextResponse("Size ID is required", { status: 400 });
         }
 
         const storebyUserId = await prismadb.store.findFirst({
             where: {
-                id: params.storeId,
+                id: params?.storeId,
                 userId,
             }
         });
@@ -124,7 +124,7 @@ export async function DELETE(
         // Update store
         const color = await prismadb.color.deleteMany({
             where: {
-                id: params.colorId,
+                id: params?.colorId,
             }
         });
 

@@ -63,14 +63,14 @@ export const  BillboardForm: React.FC<BillboardFormProps> = ({
         try {
             setLoading(true);
             if (initialData) {
-                await axios.patch(`/api/${params.storeId}/billboards/${params.billboardId}`, data);
+                await axios.patch(`/api/${params?.storeId}/billboards/${params?.billboardId}`, data);
                     //TODO[Handle response and errors correctly] 
                     // .then((response) => {
                     // console.log(response)
                     // })
                     // .catch((error) => console.log(error));
             } else {
-                await axios.post(`/api/${params.storeId}/billboards`, data);
+                await axios.post(`/api/${params?.storeId}/billboards`, data);
                     //TODO[Handle response and errors correctly] 
                     // .then((response) => {
                     // console.log(response)
@@ -78,7 +78,7 @@ export const  BillboardForm: React.FC<BillboardFormProps> = ({
                     // .catch((error) => console.log(error));
             }
             router.refresh();
-            router.push(`/${params.storeId}/billboards`)
+            router.push(`/${params?.storeId}/billboards`)
             toast.success(toastMessage);
         } catch (error: any) {
             toast.error("Something went wrong!");
@@ -90,9 +90,9 @@ export const  BillboardForm: React.FC<BillboardFormProps> = ({
     const onDelete = async () => {
         try {
             setLoading(true);
-            await axios.delete(`/api/${params.storeId}/billboards/${params.billboardId}`);
+            await axios.delete(`/api/${params?.storeId}/billboards/${params?.billboardId}`);
             router.refresh();
-            router.push(`/${params.storeId}/billboards`);
+            router.push(`/${params?.storeId}/billboards`);
             toast.success("Store deleted!")
         } catch (error: any) {
             toast.error("Make sure you removed all categories using this billboard first.");
