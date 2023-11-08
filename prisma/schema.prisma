@@ -36,8 +36,6 @@ model Billboard {
   categories    Category[]
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
-
-  @@index([storeId])
 }
 
 model Category {
@@ -49,9 +47,6 @@ model Category {
   name          String
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
-
-  @@index([storeId])
-  @@index([billboardId])
 }
 
 model Size {
@@ -62,8 +57,6 @@ model Size {
   value         String
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
-
-  @@index([storeId])
 }
 
 model Color {
@@ -74,6 +67,4 @@ model Color {
   value         String
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
-
-  @@index([storeId])
 }
