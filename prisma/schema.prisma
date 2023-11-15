@@ -85,7 +85,7 @@ model Product {
   color          Color      @relation(fields: [colorId], references: [id])
   name           String
   description    String?
-  price          Float
+  price          String
   images         Image[]
   isFeatured     Boolean    @default(false)
   isArchived     Boolean    @default(false)

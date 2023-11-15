@@ -1,6 +1,6 @@
 import { type ClassValue, clsx } from "clsx"
 import { twMerge } from "tailwind-merge"
- 
+
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
@@ -21,3 +21,9 @@ export function generate12ByteId(byteLength: any) {
   // Return the hexadecimal string as the ID.
   return hexString;
 }
+
+// Convert currency to USD later to change to different currency
+export const formatter = new Intl.NumberFormat('en-US', {
+  style: 'currency',
+  currency: 'USD',
+})
