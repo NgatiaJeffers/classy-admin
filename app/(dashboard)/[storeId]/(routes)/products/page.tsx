@@ -27,7 +27,8 @@ const ProductsPage = async ({
     const formattedProducts: ProductColumn[] = products.map((item) => ({
         id: item?.id,
         name: item?.name,
-        price: item?.price, // formatter.format(item?.price) to pass value for IntNumber in required currency
+        // price: item?.price, // formatter.format(item?.price) to pass value for IntNumber in required currency
+        price: formatter.format(item?.price), //  to pass value for IntNumber in required currency
         category: item.category.name,
         size: item.size.name,
         color: item.color.name,
